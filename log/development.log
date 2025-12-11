@@ -1,0 +1,604 @@
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='TodoApp'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-12-11 16:25:48.583108', '2025-12-11 16:25:48.583110') RETURNING "key" /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TodoApp'*/[0m
+Migrating to CreateTasks (20251211162112)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TodoApp'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(100) NOT NULL, "description" text, "due_date" date, "completed" boolean DEFAULT FALSE NOT NULL, "priority" integer DEFAULT 2 NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='TodoApp'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_completed" ON "tasks" ("completed") /*application='TodoApp'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_priority" ON "tasks" ("priority") /*application='TodoApp'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_due_date" ON "tasks" ("due_date") /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251211162112') RETURNING "version" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TodoApp'*/[0m
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "due_date", "completed", "priority", "created_at", "updated_at") VALUES ('Complete Rails project setup', 'Set up the new Rails 7 application with Tailwind CSS and configure the development environment.', '2025-12-12', TRUE, 3, '2025-12-11 16:25:55.939398', '2025-12-11 16:25:55.939398') RETURNING "id" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "due_date", "completed", "priority", "created_at", "updated_at") VALUES ('Design the task list UI', 'Create a modern, clean interface using Tailwind CSS with proper spacing, colors, and typography.', '2025-12-13', FALSE, 3, '2025-12-11 16:25:55.941070', '2025-12-11 16:25:55.941070') RETURNING "id" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "due_date", "completed", "priority", "created_at", "updated_at") VALUES ('Implement CRUD operations', 'Build out all create, read, update, and delete functionality for tasks with proper validations.', '2025-12-14', FALSE, 2, '2025-12-11 16:25:55.942091', '2025-12-11 16:25:55.942091') RETURNING "id" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "due_date", "completed", "priority", "created_at", "updated_at") VALUES ('Add filtering and sorting', 'Allow users to filter tasks by completion status and sort by various criteria like due date and priority.', '2025-12-15', FALSE, 2, '2025-12-11 16:25:55.943114', '2025-12-11 16:25:55.943114') RETURNING "id" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "due_date", "completed", "priority", "created_at", "updated_at") VALUES ('Review weekly goals', 'Take time to review progress on weekly goals and adjust priorities as needed.', '2025-12-10', FALSE, 1, '2025-12-11 16:25:55.944123', '2025-12-11 16:25:55.944123') RETURNING "id" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "due_date", "completed", "priority", "created_at", "updated_at") VALUES ('Learn something new today', 'Spend 30 minutes learning a new programming concept or technique.', NULL, FALSE, 1, '2025-12-11 16:25:55.945106', '2025-12-11 16:25:55.945106') RETURNING "id" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "due_date", "completed", "priority", "created_at", "updated_at") VALUES ('Prepare presentation slides', 'Create slides for the upcoming team meeting about project progress.', '2025-12-18', TRUE, 2, '2025-12-11 16:25:55.946106', '2025-12-11 16:25:55.946106') RETURNING "id" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*application='TodoApp'*/[0m
+Started GET "/" for 127.0.0.1 at 2025-12-11 09:27:07 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TodoApp'*/[0m
+Processing by TasksController#index as */*
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 7.9ms | GC: 0.6ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.0ms | GC: 0.6ms)
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 1.1ms (5 queries, 0 cached) | GC: 3.4ms)
+
+
+  
+ActionView::Template::Error (The asset 'inter-font.css' was not found in the load path.)
+Caused by: Propshaft::MissingAssetError (The asset 'inter-font.css' was not found in the load path.)
+
+Information for: ActionView::Template::Error (The asset 'inter-font.css' was not found in the load path.):
+    14:     <%= csrf_meta_tags %>
+    15:     <%= csp_meta_tag %>
+    16:     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    17:     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    18:     <%= javascript_importmap_tags %>
+    19:   </head>
+    20: 
+  
+app/views/layouts/application.html.erb:17
+
+Information for cause: Propshaft::MissingAssetError (The asset 'inter-font.css' was not found in the load path.):
+  
+app/views/layouts/application.html.erb:17
+Started GET "/" for 127.0.0.1 at 2025-12-11 09:27:28 -0700
+Processing by TasksController#index as */*
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.0ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 6.1ms | GC: 0.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | GC: 1.5ms)
+Completed 200 OK in 13ms (Views: 9.2ms | ActiveRecord: 1.6ms (5 queries, 0 cached) | GC: 2.3ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='TodoApp'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "tasks" /*application='TodoApp'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "completed" boolean DEFAULT FALSE NOT NULL, "created_at" datetime(6) NOT NULL, "description" text, "due_date" date, "priority" integer DEFAULT 2 NOT NULL, "title" varchar(100) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='TodoApp'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_completed" ON "tasks" ("completed") /*application='TodoApp'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_due_date" ON "tasks" ("due_date") /*application='TodoApp'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_priority" ON "tasks" ("priority") /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'a0e2614e9ef38fe51b90ba98c8dcdd07fdcf1c41', '2025-12-11 16:35:37.144065', '2025-12-11 16:35:37.144066') RETURNING "key" /*application='TodoApp'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "tasks" /*application='TodoApp'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "completed" boolean DEFAULT FALSE NOT NULL, "created_at" datetime(6) NOT NULL, "description" text, "due_date" date, "priority" integer DEFAULT 2 NOT NULL, "title" varchar(100) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='TodoApp'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_completed" ON "tasks" ("completed") /*application='TodoApp'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_due_date" ON "tasks" ("due_date") /*application='TodoApp'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_priority" ON "tasks" ("priority") /*application='TodoApp'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TodoApp'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20251211162112) /*application='TodoApp'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-12-11 16:35:37.155892', '2025-12-11 16:35:37.155892') RETURNING "key" /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.0ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = 'test', "updated_at" = '2025-12-11 16:35:37.157273' WHERE "ar_internal_metadata"."key" = 'environment' /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'a0e2614e9ef38fe51b90ba98c8dcdd07fdcf1c41', '2025-12-11 16:35:37.158825', '2025-12-11 16:35:37.158826') RETURNING "key" /*application='TodoApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TodoApp'*/[0m
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("completed", "created_at", "description", "due_date", "priority", "title", "updated_at") VALUES (TRUE, '2025-12-11 16:35:37.183599', 'Set up the new Rails 7 application with Tailwind CSS and configure the development environment.', '2025-12-12', 3, 'Complete Rails project setup', '2025-12-11 16:35:37.183599') RETURNING "id" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("completed", "created_at", "description", "due_date", "priority", "title", "updated_at") VALUES (FALSE, '2025-12-11 16:35:37.185078', 'Create a modern, clean interface using Tailwind CSS with proper spacing, colors, and typography.', '2025-12-13', 3, 'Design the task list UI', '2025-12-11 16:35:37.185078') RETURNING "id" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTask Create (0.9ms)[0m  [1m[32mINSERT INTO "tasks" ("completed", "created_at", "description", "due_date", "priority", "title", "updated_at") VALUES (FALSE, '2025-12-11 16:35:37.186148', 'Build out all create, read, update, and delete functionality for tasks with proper validations.', '2025-12-14', 2, 'Implement CRUD operations', '2025-12-11 16:35:37.186148') RETURNING "id" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("completed", "created_at", "description", "due_date", "priority", "title", "updated_at") VALUES (FALSE, '2025-12-11 16:35:37.187686', 'Allow users to filter tasks by completion status and sort by various criteria like due date and priority.', '2025-12-15', 2, 'Add filtering and sorting', '2025-12-11 16:35:37.187686') RETURNING "id" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("completed", "created_at", "description", "due_date", "priority", "title", "updated_at") VALUES (FALSE, '2025-12-11 16:35:37.188705', 'Take time to review progress on weekly goals and adjust priorities as needed.', '2025-12-10', 1, 'Review weekly goals', '2025-12-11 16:35:37.188705') RETURNING "id" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTask Create (0.7ms)[0m  [1m[32mINSERT INTO "tasks" ("completed", "created_at", "description", "due_date", "priority", "title", "updated_at") VALUES (FALSE, '2025-12-11 16:35:37.189701', 'Spend 30 minutes learning a new programming concept or technique.', NULL, 1, 'Learn something new today', '2025-12-11 16:35:37.189701') RETURNING "id" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("completed", "created_at", "description", "due_date", "priority", "title", "updated_at") VALUES (TRUE, '2025-12-11 16:35:37.191044', 'Create slides for the upcoming team meeting about project progress.', '2025-12-18', 2, 'Prepare presentation slides', '2025-12-11 16:35:37.191044') RETURNING "id" /*application='TodoApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TodoApp'*/[0m
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*application='TodoApp'*/[0m
+Started GET "/" for ::1 at 2025-12-11 09:36:56 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TodoApp'*/[0m
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 7.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.5ms | GC: 0.0ms)
+Completed 200 OK in 41ms (Views: 13.2ms | ActiveRecord: 0.9ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2025-12-11 09:36:56 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/tasks?filter=active" for ::1 at 2025-12-11 09:37:00 -0700
+Processing by TasksController#index as HTML
+  Parameters: {"filter" => "active"}
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" WHERE "tasks"."completed" = FALSE LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = FALSE ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 7.4ms | GC: 1.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.0ms | GC: 1.1ms)
+Completed 200 OK in 15ms (Views: 12.2ms | ActiveRecord: 0.5ms (5 queries, 0 cached) | GC: 1.1ms)
+
+
+Started GET "/tasks?filter=completed" for ::1 at 2025-12-11 09:37:01 -0700
+Processing by TasksController#index as HTML
+  Parameters: {"filter" => "completed"}
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" WHERE "tasks"."completed" = TRUE LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = TRUE ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 3.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 3.8ms | ActiveRecord: 0.3ms (5 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/tasks?filter=active" for ::1 at 2025-12-11 09:37:02 -0700
+Processing by TasksController#index as HTML
+  Parameters: {"filter" => "active"}
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" WHERE "tasks"."completed" = FALSE LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = FALSE ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 7.9ms | GC: 0.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.5ms | GC: 0.8ms)
+Completed 200 OK in 11ms (Views: 8.4ms | ActiveRecord: 0.6ms (5 queries, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/tasks" for ::1 at 2025-12-11 09:37:03 -0700
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 7.7ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.6ms | GC: 0.4ms)
+Completed 200 OK in 12ms (Views: 8.7ms | ActiveRecord: 0.4ms (5 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/tasks/new" for ::1 at 2025-12-11 09:37:05 -0700
+Processing by TasksController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/new.html.erb within layouts/application
+  Rendered tasks/_form.html.erb (Duration: 12.4ms | GC: 0.9ms)
+  Rendered tasks/new.html.erb within layouts/application (Duration: 13.6ms | GC: 0.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.1ms | GC: 0.9ms)
+Completed 200 OK in 18ms (Views: 14.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.9ms)
+
+
+Started POST "/tasks" for ::1 at 2025-12-11 09:37:25 -0700
+Processing by TasksController#create as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "task" => {"title" => "A new task that you need to do", "description" => "You need to do this task now", "due_date" => "2025-12-18", "priority" => "3"}, "commit" => "Create Task"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:36:in 'TasksController#create'
+  [1m[36mTask Create (0.7ms)[0m  [1m[32mINSERT INTO "tasks" ("completed", "created_at", "description", "due_date", "priority", "title", "updated_at") VALUES (FALSE, '2025-12-11 16:37:25.775687', 'You need to do this task now', '2025-12-18', 3, 'A new task that you need to do', '2025-12-11 16:37:25.775687') RETURNING "id" /*action='create',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:36:in 'TasksController#create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:36:in 'TasksController#create'
+Redirected to http://localhost:3000/tasks
+↳ app/controllers/tasks_controller.rb:37:in 'TasksController#create'
+Completed 302 Found in 4ms (ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/tasks" for ::1 at 2025-12-11 09:37:25 -0700
+Processing by TasksController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 4.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.4ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 9.0ms | ActiveRecord: 0.3ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/tasks/7/edit" for ::1 at 2025-12-11 09:37:28 -0700
+Processing by TasksController#edit as HTML
+  Parameters: {"id" => "7"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = 7 LIMIT 1 /*action='edit',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:76:in 'TasksController#set_task'
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/edit.html.erb within layouts/application
+  Rendered tasks/_form.html.erb (Duration: 4.3ms | GC: 0.0ms)
+  Rendered tasks/edit.html.erb within layouts/application (Duration: 4.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.6ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 6.2ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/tasks/7" for ::1 at 2025-12-11 09:37:33 -0700
+Processing by TasksController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "7"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = 7 LIMIT 1 /*action='destroy',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:76:in 'TasksController#set_task'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='destroy',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:61:in 'TasksController#destroy'
+  [1m[36mTask Destroy (1.2ms)[0m  [1m[31mDELETE FROM "tasks" WHERE "tasks"."id" = 7 /*action='destroy',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:61:in 'TasksController#destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='destroy',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:61:in 'TasksController#destroy'
+Redirected to http://localhost:3000/tasks
+↳ app/controllers/tasks_controller.rb:62:in 'TasksController#destroy'
+Completed 302 Found in 6ms (ActiveRecord: 1.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/tasks" for ::1 at 2025-12-11 09:37:33 -0700
+Processing by TasksController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 5.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.6ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.3ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/tasks/1" for ::1 at 2025-12-11 09:37:37 -0700
+Processing by TasksController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "1"}
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = 1 LIMIT 1 /*action='destroy',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:76:in 'TasksController#set_task'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='destroy',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:61:in 'TasksController#destroy'
+  [1m[36mTask Destroy (0.4ms)[0m  [1m[31mDELETE FROM "tasks" WHERE "tasks"."id" = 1 /*action='destroy',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:61:in 'TasksController#destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='destroy',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:61:in 'TasksController#destroy'
+Redirected to http://localhost:3000/tasks
+↳ app/controllers/tasks_controller.rb:62:in 'TasksController#destroy'
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/tasks" for ::1 at 2025-12-11 09:37:37 -0700
+Processing by TasksController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 9.1ms | GC: 0.6ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.2ms | GC: 1.3ms)
+Completed 200 OK in 11ms (Views: 10.2ms | ActiveRecord: 0.2ms (5 queries, 0 cached) | GC: 1.3ms)
+
+
+Started DELETE "/tasks/2" for ::1 at 2025-12-11 09:37:41 -0700
+Processing by TasksController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "2"}
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = 2 LIMIT 1 /*action='destroy',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:76:in 'TasksController#set_task'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='destroy',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:61:in 'TasksController#destroy'
+  [1m[36mTask Destroy (0.6ms)[0m  [1m[31mDELETE FROM "tasks" WHERE "tasks"."id" = 2 /*action='destroy',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:61:in 'TasksController#destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='destroy',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:61:in 'TasksController#destroy'
+Redirected to http://localhost:3000/tasks
+↳ app/controllers/tasks_controller.rb:62:in 'TasksController#destroy'
+Completed 302 Found in 5ms (ActiveRecord: 0.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/tasks" for ::1 at 2025-12-11 09:37:41 -0700
+Processing by TasksController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.0ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 3.2ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | GC: 0.5ms)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.2ms (5 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/tasks?filter=active" for ::1 at 2025-12-11 09:37:42 -0700
+Processing by TasksController#index as HTML
+  Parameters: {"filter" => "active"}
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" WHERE "tasks"."completed" = FALSE LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = FALSE ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 8.8ms | GC: 1.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.4ms | GC: 1.1ms)
+Completed 200 OK in 12ms (Views: 9.5ms | ActiveRecord: 0.6ms (5 queries, 0 cached) | GC: 1.1ms)
+
+
+Started GET "/tasks?filter=completed" for ::1 at 2025-12-11 09:37:43 -0700
+Processing by TasksController#index as HTML
+  Parameters: {"filter" => "completed"}
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" WHERE "tasks"."completed" = TRUE LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  Rendered tasks/index.html.erb within layouts/application (Duration: 3.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 4.6ms | ActiveRecord: 0.3ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/tasks" for ::1 at 2025-12-11 09:37:44 -0700
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 9.0ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | GC: 0.3ms)
+Completed 200 OK in 12ms (Views: 9.6ms | ActiveRecord: 0.5ms (5 queries, 0 cached) | GC: 0.3ms)
+
+
+Started PATCH "/tasks/8/toggle_complete" for ::1 at 2025-12-11 09:37:45 -0700
+Processing by TasksController#toggle_complete as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "8"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = 8 LIMIT 1 /*action='toggle_complete',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:76:in 'TasksController#set_task'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='toggle_complete',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:68:in 'TasksController#toggle_complete'
+  [1m[36mTask Update (0.9ms)[0m  [1m[33mUPDATE "tasks" SET "completed" = TRUE, "updated_at" = '2025-12-11 16:37:45.483743' WHERE "tasks"."id" = 8 /*action='toggle_complete',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:68:in 'TasksController#toggle_complete'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='toggle_complete',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:68:in 'TasksController#toggle_complete'
+Redirected to http://localhost:3000/tasks
+↳ app/controllers/tasks_controller.rb:69:in 'TasksController#toggle_complete'
+Completed 302 Found in 7ms (ActiveRecord: 1.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/tasks" for ::1 at 2025-12-11 09:37:45 -0700
+Processing by TasksController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 4.8ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.3ms | GC: 0.1ms)
+Completed 200 OK in 10ms (Views: 8.3ms | ActiveRecord: 0.3ms (5 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/tasks?filter=completed" for ::1 at 2025-12-11 09:37:47 -0700
+Processing by TasksController#index as HTML
+  Parameters: {"filter" => "completed"}
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" WHERE "tasks"."completed" = TRUE LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = TRUE ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 8.2ms | GC: 3.6ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | GC: 3.6ms)
+Completed 200 OK in 11ms (Views: 8.9ms | ActiveRecord: 0.4ms (5 queries, 0 cached) | GC: 3.6ms)
+
+
+Started GET "/tasks?filter=active" for ::1 at 2025-12-11 09:37:48 -0700
+Processing by TasksController#index as HTML
+  Parameters: {"filter" => "active"}
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" WHERE "tasks"."completed" = FALSE LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = FALSE ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 5.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.2ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 6.5ms | ActiveRecord: 0.4ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-12-11 09:37:50 -0700
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 6.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.6ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 7.9ms | ActiveRecord: 0.4ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-12-11 09:37:52 -0700
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 5.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.2ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 6.2ms | ActiveRecord: 0.4ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-12-11 09:39:51 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TodoApp'*/[0m
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 7.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.5ms | GC: 0.0ms)
+Completed 200 OK in 24ms (Views: 12.5ms | ActiveRecord: 1.1ms (5 queries, 0 cached) | GC: 0.5ms)
+
+

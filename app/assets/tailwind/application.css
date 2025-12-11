@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+/* Custom theme configuration for Taskflow */
+@theme {
+  /* Custom fonts */
+  --font-display: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* Warm terracotta palette */
+  --color-terracotta-light: #E8B4A0;
+  --color-terracotta: #C75B39;
+  --color-terracotta-dark: #A34829;
+
+  /* Sage green for completed/success states */
+  --color-sage-light: #D4E4D2;
+  --color-sage: #7A9B76;
+  --color-sage-dark: #5A7A56;
+
+  /* Warm cream background tones */
+  --color-cream-light: #FDF8F3;
+  --color-cream: #F5EBE0;
+  --color-cream-dark: #E8DED3;
+
+  /* Custom animations */
+  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-slide-up: slide-up 0.4s ease-out;
+  --animate-pulse-soft: pulse-soft 2s ease-in-out infinite;
+}
+
+/* Keyframe animations */
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slide-up {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom selection color */
+::selection {
+  background-color: rgba(199, 91, 57, 0.2);
+  color: inherit;
+}
+
+/* Improve focus visibility for accessibility */
+:focus-visible {
+  outline: 2px solid #C75B39;
+  outline-offset: 2px;
+}

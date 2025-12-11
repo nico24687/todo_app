@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taskflow - Organize Your Day</title>
+    <meta name="turbo-cache-control" content="no-preview">
+    
+    <!-- Google Fonts: Playfair Display for headings, Source Sans 3 for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="h-full bg-gradient-to-br from-stone-100 via-orange-50 to-amber-50 font-sans antialiased">
+    <!-- Decorative background elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+      <div class="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-terracotta/10 to-transparent rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-sage/10 to-transparent rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-stone-200/50 shadow-sm">
+      <nav class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo and Brand -->
+          <%= link_to root_path, class: "flex items-center gap-3 group" do %>
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-terracotta to-terracotta-dark flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+              </svg>
+            </div>
+            <div>
+              <h1 class="font-display text-xl font-semibold text-stone-800 tracking-tight">Taskflow</h1>
+              <p class="text-xs text-stone-500 -mt-0.5">Organize your day</p>
+            </div>
+          <% end %>
+
+          <!-- New Task Button -->
+          <%= link_to new_task_path, class: "inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-terracotta to-terracotta-dark text-white font-medium rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200" do %>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
+            </svg>
+            <span class="hidden sm:inline">New Task</span>
+          <% end %>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Flash Messages -->
+    <% if notice.present? %>
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+        <div class="flex items-center gap-3 p-4 bg-sage/20 border border-sage/30 rounded-xl text-sage-dark" role="alert">
+          <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <p class="font-medium"><%= notice %></p>
+        </div>
+      </div>
+    <% end %>
+
+    <% if alert.present? %>
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+        <div class="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700" role="alert">
+          <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <p class="font-medium"><%= alert %></p>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <%= yield %>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-stone-200/50 bg-white/30 backdrop-blur-sm">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <p class="text-center text-sm text-stone-500">
+          Built with <span class="text-terracotta">♥</span> using Ruby on Rails & Tailwind CSS
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
