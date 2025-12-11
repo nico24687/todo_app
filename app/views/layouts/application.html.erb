@@ -11,6 +11,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Prevent flash of wrong theme -->
+    <script>
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
@@ -18,15 +25,15 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="h-full bg-gradient-to-br from-stone-100 via-orange-50 to-amber-50 font-sans antialiased">
+  <body class="h-full bg-gradient-to-br from-stone-100 via-orange-50 to-amber-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 font-sans antialiased transition-colors duration-200">
     <!-- Decorative background elements -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-      <div class="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-terracotta/10 to-transparent rounded-full blur-3xl"></div>
-      <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-sage/10 to-transparent rounded-full blur-3xl"></div>
+      <div class="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-terracotta/10 dark:from-terracotta/5 to-transparent rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-sage/10 dark:from-sage/5 to-transparent rounded-full blur-3xl"></div>
     </div>
 
     <!-- Navigation Header -->
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-stone-200/50 shadow-sm">
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/70 dark:bg-slate-900/80 border-b border-stone-200/50 dark:border-slate-700/50 shadow-sm">
       <nav class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <!-- Logo and Brand -->
@@ -37,18 +44,38 @@
               </svg>
             </div>
             <div>
-              <h1 class="font-display text-xl font-semibold text-stone-800 tracking-tight">Taskflow</h1>
-              <p class="text-xs text-stone-500 -mt-0.5">Organize your day</p>
+              <h1 class="font-display text-xl font-semibold text-stone-800 dark:text-stone-100 tracking-tight">Taskflow</h1>
+              <p class="text-xs text-stone-500 dark:text-slate-400 -mt-0.5">Organize your day</p>
             </div>
           <% end %>
 
-          <!-- New Task Button -->
-          <%= link_to new_task_path, class: "inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-terracotta to-terracotta-dark text-white font-medium rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200" do %>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
-            </svg>
-            <span class="hidden sm:inline">New Task</span>
-          <% end %>
+          <!-- Right side actions -->
+          <div class="flex items-center gap-3">
+            <!-- Theme Toggle Button -->
+            <div data-controller="theme">
+              <button type="button" 
+                      data-action="click->theme#toggle"
+                      class="p-2 rounded-lg text-stone-500 dark:text-slate-400 hover:text-stone-700 dark:hover:text-slate-200 hover:bg-stone-100 dark:hover:bg-slate-800 transition-colors duration-200"
+                      title="Toggle dark mode">
+                <!-- Sun icon (shown in dark mode) -->
+                <svg data-theme-target="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                </svg>
+                <!-- Moon icon (shown in light mode) -->
+                <svg data-theme-target="moonIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- New Task Button -->
+            <%= link_to new_task_path, class: "inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-terracotta to-terracotta-dark text-white font-medium rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200" do %>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
+              </svg>
+              <span class="hidden sm:inline">New Task</span>
+            <% end %>
+          </div>
         </div>
       </nav>
     </header>
@@ -56,7 +83,7 @@
     <!-- Flash Messages -->
     <% if notice.present? %>
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-        <div class="flex items-center gap-3 p-4 bg-sage/20 border border-sage/30 rounded-xl text-sage-dark" role="alert">
+        <div class="flex items-center gap-3 p-4 bg-sage/20 dark:bg-sage/10 border border-sage/30 dark:border-sage/20 rounded-xl text-sage-dark dark:text-sage-light" role="alert">
           <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
@@ -67,7 +94,7 @@
 
     <% if alert.present? %>
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-        <div class="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700" role="alert">
+        <div class="flex items-center gap-3 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/50 rounded-xl text-red-700 dark:text-red-400" role="alert">
           <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
@@ -82,10 +109,10 @@
     </main>
 
     <!-- Footer -->
-    <footer class="mt-auto border-t border-stone-200/50 bg-white/30 backdrop-blur-sm">
+    <footer class="mt-auto border-t border-stone-200/50 dark:border-slate-700/50 bg-white/30 dark:bg-slate-900/30 backdrop-blur-sm">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <p class="text-center text-sm text-stone-500">
-          Built with <span class="text-terracotta">♥</span> using Ruby on Rails & Tailwind CSS
+        <p class="text-center text-sm text-stone-500 dark:text-slate-400">
+          Built with <span class="text-terracotta dark:text-terracotta-light">♥</span> using Ruby on Rails & Tailwind CSS
         </p>
       </div>
     </footer>

@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Custom theme configuration for Taskflow */
 @theme {
   /* Custom fonts */
@@ -20,6 +23,12 @@
   --color-cream-light: #FDF8F3;
   --color-cream: #F5EBE0;
   --color-cream-dark: #E8DED3;
+
+  /* Dark mode background tones */
+  --color-dark-bg: #0f172a;
+  --color-dark-surface: #1e293b;
+  --color-dark-elevated: #334155;
+  --color-dark-border: #475569;
 
   /* Custom animations */
   --animate-fade-in: fade-in 0.3s ease-out;
@@ -54,8 +63,27 @@ html {
   color: inherit;
 }
 
+.dark ::selection {
+  background-color: rgba(232, 180, 160, 0.3);
+  color: inherit;
+}
+
 /* Improve focus visibility for accessibility */
 :focus-visible {
   outline: 2px solid #C75B39;
   outline-offset: 2px;
+}
+
+.dark :focus-visible {
+  outline: 2px solid #E8B4A0;
+  outline-offset: 2px;
+}
+
+/* Smooth theme transitions */
+html {
+  transition: background-color 0.2s ease-in-out;
+}
+
+html.dark {
+  color-scheme: dark;
 }

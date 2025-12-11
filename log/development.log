@@ -602,3 +602,221 @@ Processing by TasksController#index as HTML
 Completed 200 OK in 24ms (Views: 12.5ms | ActiveRecord: 1.1ms (5 queries, 0 cached) | GC: 0.5ms)
 
 
+Started GET "/" for ::1 at 2025-12-11 10:18:20 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TodoApp'*/[0m
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 7.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.7ms | GC: 0.0ms)
+Completed 200 OK in 20ms (Views: 11.8ms | ActiveRecord: 1.1ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-12-11 10:21:45 -0700
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 5.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 5.9ms | ActiveRecord: 0.4ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/tasks?filter=active" for ::1 at 2025-12-11 10:21:54 -0700
+Processing by TasksController#index as HTML
+  Parameters: {"filter" => "active"}
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" WHERE "tasks"."completed" = FALSE LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = FALSE ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 6.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.4ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 7.5ms | ActiveRecord: 0.5ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/tasks" for ::1 at 2025-12-11 10:21:55 -0700
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 8.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.8ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 9.0ms | ActiveRecord: 0.4ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/tasks?filter=active" for ::1 at 2025-12-11 10:21:58 -0700
+Processing by TasksController#index as HTML
+  Parameters: {"filter" => "active"}
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" WHERE "tasks"."completed" = FALSE LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = FALSE ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 9.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.4ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 10.3ms | ActiveRecord: 0.5ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/tasks/new" for ::1 at 2025-12-11 10:21:59 -0700
+Processing by TasksController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/new.html.erb within layouts/application
+  Rendered tasks/_form.html.erb (Duration: 13.2ms | GC: 0.0ms)
+  Rendered tasks/new.html.erb within layouts/application (Duration: 14.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.1ms | GC: 0.0ms)
+Completed 200 OK in 18ms (Views: 15.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/tasks?filter=active" for ::1 at 2025-12-11 10:25:19 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TodoApp'*/[0m
+Processing by TasksController#index as HTML
+  Parameters: {"filter" => "active"}
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" WHERE "tasks"."completed" = FALSE LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = FALSE ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 7.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.5ms | GC: 0.0ms)
+Completed 200 OK in 21ms (Views: 11.4ms | ActiveRecord: 1.1ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2025-12-11 10:25:20 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started PATCH "/tasks/5/toggle_complete" for ::1 at 2025-12-11 10:25:24 -0700
+Processing by TasksController#toggle_complete as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "5"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = 5 LIMIT 1 /*action='toggle_complete',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:76:in 'TasksController#set_task'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='toggle_complete',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:68:in 'TasksController#toggle_complete'
+  [1m[36mTask Update (0.9ms)[0m  [1m[33mUPDATE "tasks" SET "completed" = TRUE, "updated_at" = '2025-12-11 17:25:24.282314' WHERE "tasks"."id" = 5 /*action='toggle_complete',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:68:in 'TasksController#toggle_complete'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='toggle_complete',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:68:in 'TasksController#toggle_complete'
+Redirected to http://localhost:3000/tasks?filter=active
+↳ app/controllers/tasks_controller.rb:69:in 'TasksController#toggle_complete'
+Completed 302 Found in 12ms (ActiveRecord: 2.8ms (2 queries, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/tasks?filter=active" for ::1 at 2025-12-11 10:25:24 -0700
+Processing by TasksController#index as TURBO_STREAM
+  Parameters: {"filter" => "active"}
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" WHERE "tasks"."completed" = FALSE LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = FALSE ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 4.6ms | GC: 0.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.0ms | GC: 0.9ms)
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.2ms (5 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/tasks?filter=completed" for ::1 at 2025-12-11 10:25:25 -0700
+Processing by TasksController#index as HTML
+  Parameters: {"filter" => "completed"}
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" WHERE "tasks"."completed" = TRUE LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = TRUE ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 11.4ms | GC: 1.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.0ms | GC: 1.7ms)
+Completed 200 OK in 14ms (Views: 11.9ms | ActiveRecord: 0.5ms (5 queries, 0 cached) | GC: 1.7ms)
+
+
+Started GET "/tasks/new" for ::1 at 2025-12-11 10:25:27 -0700
+Processing by TasksController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/new.html.erb within layouts/application
+  Rendered tasks/_form.html.erb (Duration: 9.1ms | GC: 3.8ms)
+  Rendered tasks/new.html.erb within layouts/application (Duration: 10.8ms | GC: 4.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.4ms | GC: 5.1ms)
+Completed 200 OK in 16ms (Views: 13.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 5.8ms)
+
+
+Started GET "/tasks" for ::1 at 2025-12-11 10:25:39 -0700
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:18
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = FALSE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:26
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."completed" = TRUE /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:34
+  [1m[36mTask Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:66
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."created_at" DESC /*action='index',application='TodoApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:68:in 'Enumerable#each_with_index'
+  Rendered tasks/index.html.erb within layouts/application (Duration: 18.7ms | GC: 9.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.8ms | GC: 9.4ms)
+Completed 200 OK in 23ms (Views: 19.5ms | ActiveRecord: 0.9ms (5 queries, 0 cached) | GC: 10.3ms)
+
+

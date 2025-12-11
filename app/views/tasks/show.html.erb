@@ -1,7 +1,7 @@
 <div class="max-w-2xl mx-auto animate-fade-in">
   <!-- Back Link -->
   <div class="mb-6">
-    <%= link_to tasks_path, class: "inline-flex items-center gap-2 text-stone-500 hover:text-terracotta transition-colors duration-200" do %>
+    <%= link_to tasks_path, class: "inline-flex items-center gap-2 text-stone-500 dark:text-slate-400 hover:text-terracotta dark:hover:text-terracotta-light transition-colors duration-200" do %>
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
       </svg>
@@ -10,29 +10,29 @@
   </div>
 
   <!-- Task Card -->
-  <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-stone-200/50 overflow-hidden">
+  <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg border border-stone-200/50 dark:border-slate-700/50 overflow-hidden">
     <!-- Header -->
-    <div class="px-6 py-5 border-b border-stone-100 bg-gradient-to-r from-stone-50 to-transparent">
+    <div class="px-6 py-5 border-b border-stone-100 dark:border-slate-700 bg-gradient-to-r from-stone-50 dark:from-slate-700/50 to-transparent">
       <div class="flex items-start justify-between gap-4">
         <div class="flex-1">
-          <h1 class="font-display text-2xl sm:text-3xl font-bold text-stone-800 <%= 'line-through opacity-60' if @task.completed? %>">
+          <h1 class="font-display text-2xl sm:text-3xl font-bold text-stone-800 dark:text-stone-100 <%= 'line-through opacity-60' if @task.completed? %>">
             <%= @task.title %>
           </h1>
-          <p class="text-sm text-stone-500 mt-1">
+          <p class="text-sm text-stone-500 dark:text-slate-400 mt-1">
             Created <%= time_ago_in_words(@task.created_at) %> ago
           </p>
         </div>
 
         <!-- Status Badge -->
         <% if @task.completed? %>
-          <span class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-full bg-sage/20 text-sage-dark border border-sage/30">
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-full bg-sage/20 dark:bg-sage/10 text-sage-dark dark:text-sage-light border border-sage/30 dark:border-sage/20">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
             Completed
           </span>
         <% else %>
-          <span class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-full bg-amber-100 text-amber-700 border border-amber-200">
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800/50">
             <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse-soft"></span>
             In Progress
           </span>
@@ -45,12 +45,12 @@
       <!-- Meta Information -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <!-- Priority -->
-        <div class="bg-stone-50 rounded-xl p-4">
-          <label class="block text-xs font-medium text-stone-500 uppercase tracking-wider mb-2">Priority</label>
+        <div class="bg-stone-50 dark:bg-slate-700/50 rounded-xl p-4">
+          <label class="block text-xs font-medium text-stone-500 dark:text-slate-400 uppercase tracking-wider mb-2">Priority</label>
           <% priority_colors = case @task.priority
-               when 3 then 'text-red-600'
-               when 2 then 'text-amber-600'
-               else 'text-stone-600'
+               when 3 then 'text-red-600 dark:text-red-400'
+               when 2 then 'text-amber-600 dark:text-amber-400'
+               else 'text-stone-600 dark:text-slate-300'
              end %>
           <div class="flex items-center gap-2 <%= priority_colors %>">
             <% if @task.priority == 3 %>
@@ -71,15 +71,15 @@
         </div>
 
         <!-- Due Date -->
-        <div class="bg-stone-50 rounded-xl p-4">
-          <label class="block text-xs font-medium text-stone-500 uppercase tracking-wider mb-2">Due Date</label>
+        <div class="bg-stone-50 dark:bg-slate-700/50 rounded-xl p-4">
+          <label class="block text-xs font-medium text-stone-500 dark:text-slate-400 uppercase tracking-wider mb-2">Due Date</label>
           <% if @task.due_date.present? %>
             <% due_classes = if @task.overdue?
-                 'text-red-600'
+                 'text-red-600 dark:text-red-400'
                elsif @task.due_soon?
-                 'text-amber-600'
+                 'text-amber-600 dark:text-amber-400'
                else
-                 'text-stone-700'
+                 'text-stone-700 dark:text-slate-200'
                end %>
             <div class="flex items-center gap-2 <%= due_classes %>">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -87,31 +87,31 @@
               </svg>
               <span class="font-semibold text-lg"><%= @task.due_date.strftime("%B %d, %Y") %></span>
               <% if @task.overdue? && !@task.completed? %>
-                <span class="text-xs font-medium px-2 py-0.5 bg-red-100 rounded-full">Overdue</span>
+                <span class="text-xs font-medium px-2 py-0.5 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full">Overdue</span>
               <% elsif @task.due_soon? && !@task.completed? %>
-                <span class="text-xs font-medium px-2 py-0.5 bg-amber-100 rounded-full">Due Soon</span>
+                <span class="text-xs font-medium px-2 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-full">Due Soon</span>
               <% end %>
             </div>
           <% else %>
-            <span class="text-stone-400 italic">No due date set</span>
+            <span class="text-stone-400 dark:text-slate-500 italic">No due date set</span>
           <% end %>
         </div>
       </div>
 
       <!-- Description -->
       <div>
-        <label class="block text-xs font-medium text-stone-500 uppercase tracking-wider mb-2">Description</label>
+        <label class="block text-xs font-medium text-stone-500 dark:text-slate-400 uppercase tracking-wider mb-2">Description</label>
         <% if @task.description.present? %>
-          <div class="prose prose-stone max-w-none">
-            <p class="text-stone-700 leading-relaxed whitespace-pre-wrap"><%= @task.description %></p>
+          <div class="prose prose-stone dark:prose-invert max-w-none">
+            <p class="text-stone-700 dark:text-slate-300 leading-relaxed whitespace-pre-wrap"><%= @task.description %></p>
           </div>
         <% else %>
-          <p class="text-stone-400 italic">No description provided</p>
+          <p class="text-stone-400 dark:text-slate-500 italic">No description provided</p>
         <% end %>
       </div>
 
       <!-- Timestamps -->
-      <div class="pt-4 border-t border-stone-100 flex flex-wrap gap-x-6 gap-y-2 text-sm text-stone-500">
+      <div class="pt-4 border-t border-stone-100 dark:border-slate-700 flex flex-wrap gap-x-6 gap-y-2 text-sm text-stone-500 dark:text-slate-400">
         <div>
           <span class="font-medium">Created:</span> <%= @task.created_at.strftime("%b %d, %Y at %I:%M %p") %>
         </div>
@@ -122,10 +122,10 @@
     </div>
 
     <!-- Actions Footer -->
-    <div class="px-6 py-4 bg-stone-50 border-t border-stone-100 flex flex-wrap items-center justify-between gap-3">
+    <div class="px-6 py-4 bg-stone-50 dark:bg-slate-700/50 border-t border-stone-100 dark:border-slate-700 flex flex-wrap items-center justify-between gap-3">
       <!-- Toggle Complete -->
       <%= button_to toggle_complete_task_path(@task), method: :patch, 
-          class: "inline-flex items-center gap-2 px-4 py-2 font-medium rounded-full transition-all duration-200 #{@task.completed? ? 'bg-amber-100 text-amber-700 hover:bg-amber-200' : 'bg-sage text-white hover:bg-sage-dark shadow-sm'}",
+          class: "inline-flex items-center gap-2 px-4 py-2 font-medium rounded-full transition-all duration-200 #{@task.completed? ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 hover:bg-amber-200 dark:hover:bg-amber-900/50' : 'bg-sage text-white hover:bg-sage-dark shadow-sm'}",
           data: { turbo_method: :patch } do %>
         <% if @task.completed? %>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -142,7 +142,7 @@
 
       <div class="flex items-center gap-2">
         <%= link_to edit_task_path(@task), 
-            class: "inline-flex items-center gap-2 px-4 py-2 bg-white text-stone-700 font-medium rounded-full border border-stone-200 hover:bg-stone-50 hover:border-stone-300 transition-all duration-200" do %>
+            class: "inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-600 text-stone-700 dark:text-slate-200 font-medium rounded-full border border-stone-200 dark:border-slate-500 hover:bg-stone-50 dark:hover:bg-slate-500 hover:border-stone-300 dark:hover:border-slate-400 transition-all duration-200" do %>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
           </svg>
@@ -150,7 +150,7 @@
         <% end %>
 
         <%= button_to task_path(@task), method: :delete, 
-            class: "inline-flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 font-medium rounded-full border border-red-200 hover:bg-red-100 hover:border-red-300 transition-all duration-200",
+            class: "inline-flex items-center gap-2 px-4 py-2 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 font-medium rounded-full border border-red-200 dark:border-red-800/50 hover:bg-red-100 dark:hover:bg-red-900/30 hover:border-red-300 dark:hover:border-red-700 transition-all duration-200",
             data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this task? This action cannot be undone." } do %>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
